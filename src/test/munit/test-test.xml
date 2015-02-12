@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule  	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.5.2"
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+    <munit:config doc:name="Munit configuration"/>
+    <spring:beans>
+        <spring:import resource="classpath*:test.xml"/>
+    </spring:beans>
+    <munit:test name="testTruePath" description="Test">
+        <set-variable variableName="routingCondition" value="#[true]" doc:name="Variable"/>
+        <flow-ref name="testFlow1" doc:name="Flow-ref to testFlow1"/>
+    </munit:test>
+    <munit:test name="testFalsePath" description="Test">
+        <set-variable variableName="routingCondition" value="#[false]" doc:name="Variable"/>
+        <flow-ref name="testFlow1" doc:name="Copy_of_Flow-ref to testFlow1"/>
+    </munit:test>
+</mule>
